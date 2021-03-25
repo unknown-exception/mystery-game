@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.*;
+import java.util.stream.IntStream;
+
 @RestController
 public class HelloController {
     /*
@@ -13,6 +16,15 @@ public class HelloController {
         return "Hello!";
     }
 */
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(value = "/weatherforecast", produces = "application/json")
+    public ArrayList<Forecast> WeatherForecast(){
+        String[] arr = {"Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"};
+
+        ArrayList<Forecast> f = new ArrayList<>();
+        IntStream.range(0, arr.length - 1).forEach(i -> f.add(i, new Forecast( new Date(), 1, 1, arr[i] )));
+        return f;
+    }
 
     @RequestMapping(value = "/hello", produces = "application/json")
     public Foo sayHello(@CookieValue(value = "username", defaultValue = "Atta") String username, @RequestParam(value = "name") String name){
