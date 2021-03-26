@@ -19,7 +19,7 @@ public class HelloController {
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/weatherforecast", produces = "application/json")
     public ArrayList<Forecast> WeatherForecast(){
-        String[] arr = {"Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"};
+        String[] arr = {"Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot"};
 
         ArrayList<Forecast> f = new ArrayList<>();
         IntStream.range(0, arr.length - 1).forEach(i -> f.add(i, new Forecast( new Date(), 1, 1, arr[i] )));
