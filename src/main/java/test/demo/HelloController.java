@@ -36,13 +36,23 @@ public class HelloController {
         //return "Hello " + name + ".";
     }
     @GetMapping("/change-username")
-    public String setCookie(HttpServletResponse response) {
+    public String setCookieUsername(HttpServletResponse response) {
         // create a cookie
         Cookie cookie = new Cookie("username", "Jovan");
 
         //add cookie to response
         response.addCookie(cookie);
         return "Username is changed!";
+    }
+
+    @GetMapping("/set-password")
+    public String setCookiePassword(HttpServletResponse response) {
+        // create a cookie
+        Cookie cookie = new Cookie("password", "n");
+
+        //add cookie to response
+        response.addCookie(cookie);
+        return "Password is changed!";
     }
 }
 
