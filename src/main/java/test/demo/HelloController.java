@@ -17,7 +17,7 @@ public class HelloController {
     }
 */
     @CrossOrigin(origins = "http://localhost:3000")
-    @RequestMapping(value = "/weatherforecast", produces = "application/json")
+    @RequestMapping(value = "/weatherforecast", produces = "application/json", method = RequestMethod.GET)
     public ArrayList<Forecast> WeatherForecast(){
         String[] arr = {"Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot"};
 
