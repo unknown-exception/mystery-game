@@ -3,6 +3,7 @@ package test.demo;
 
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.util.*;
@@ -10,12 +11,7 @@ import java.util.stream.IntStream;
 
 @RestController
 public class HelloController {
-    /*
-    @RequestMapping("/")
-    public String Hello(){
-        return "Hello!";
-    }
-*/
+
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/weatherforecast", produces = "application/json", method = RequestMethod.GET)
     public ArrayList<Forecast> WeatherForecast(){
@@ -33,26 +29,20 @@ public class HelloController {
         foo.Name = name;
         foo.UserName = username;
         return foo;
-        //return "Hello " + name + ".";
     }
     @GetMapping("/change-username")
-    public String setCookieUsername(HttpServletResponse response) {
-        // create a cookie
-        Cookie cookie = new Cookie("username", "Jovan");
+    public String setCookieUsername(HttpServletRequest request, HttpServletResponse response) {
+        Cookie[] requestCookies = request.getCookies();
 
-        //add cookie to response
-        response.addCookie(cookie);
-        return "Username is changed!";
-    }
+        if(requestCookies != null) {
+            // create a cookie
+            Cookie cookie = new Cookie("username", "Jovan");
 
-    @GetMapping("/set-password")
-    public String setCookiePassword(HttpServletResponse response) {
-        // create a cookie
-        Cookie cookie = new Cookie("password", "n");
-
-        //add cookie to response
-        response.addCookie(cookie);
-        return "Password is changed!";
+            //add cookie to response
+            response.addCookie(cookie);
+            return "Username is changed!";
+        }
+        return null;
     }
 }
 
