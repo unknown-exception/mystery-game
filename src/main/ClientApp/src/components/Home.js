@@ -25,14 +25,15 @@ export class Home extends Component {
 
   async setUserName() {
     let name = this.state.username;
-    const response = await fetch(App.baseUrl + '/setUsername?name=' + name);
-    const data = await response.json();
+    // const response = await fetch(App.baseUrl + '/setUsername?name=' + name);
+    // const data = await response.json();
     App.userName = name;
     this.props.history.push("/fetch-data");
   }
 
 
-  buttonOkClick = () => { 
+  buttonOkClick = (event) => { 
+    debugger;
     this.setUserName();
   }
 
@@ -43,10 +44,11 @@ export class Home extends Component {
   render () {
     return (
       <div>
-        <h1>Hello</h1>
+        <h1>Hello,</h1>
+        <h4>Name yourself, adventurer</h4>
         <input type="text" onChange={this.inputTextChanged} />
         <br /> <br />
-        <button className="btn btn-primary" onClick={this.buttonOkClick}>Ok</button>
+        <button value="XXX" className="btn btn-primary" onClick={this.buttonOkClick.bind(this, 123)}>Ok</button>
       </div>
     );
   }

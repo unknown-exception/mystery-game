@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 import App from '../App';
 export class FetchData extends Component {
   static displayName = FetchData.name;
-
+  static _this;
   constructor(props) {
     super(props);
     this.state = { opponents: [], loading: true };
+    FetchData._this = this;
+  }
+
+  static handleClick(name) {
+    debugger;
+    App.opponentName = name;
+    
+    FetchData._this.props.history.push("/counter");
   }
 
   componentDidMount() {
@@ -14,23 +22,23 @@ export class FetchData extends Component {
 
   static renderOpponentTable(opponents) {
     return (
+      <div>
       <table className='table table-striped' aria-labelledby="tabelLabel">
         <thead>
           <tr>
             <th>Name</th>
-            {/* <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th> */}
           </tr>
         </thead>
         <tbody>
           {opponents.map(opponent =>
             <tr key={opponent}>
-              <td>{opponent}</td>
+              <td><button className="btn btn-primary" onClick={() => {debugger; this.handleClick(opponent);} }>{opponent}</button></td>
             </tr>
           )}
         </tbody>
       </table>
+      <button className="btn btn-primary" valie='XXX' onClick={this.buttonOppClick}>Ok</button>
+      </div>
     );
   }
 
@@ -44,14 +52,16 @@ export class FetchData extends Component {
         <h1 id="tabelLabel" >Hello {App.userName}</h1>
         <p>Choose your opponent</p>
         {contents}
+        <hr />
       </div>
     );
   }
 
   async getOpponents() {
-    debugger;
-    const response = await fetch(App.baseUrl + '/getOpponentsList?name=' + App.userName);
-    const data = await response.json();
+
+    // const response = await fetch(App.baseUrl + '/getOpponentsList?name=' + App.userName);
+    // const data = await response.json();
+    const data = ['One', 'Two', 'three'];
     this.setState({ opponents: data, loading: false });
   }
 }
