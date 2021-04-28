@@ -10,6 +10,10 @@ import './custom.css'
 export default class App extends Component {
   static displayName = App.name;
 
+  static baseUrl = 'http://localhost:8095';
+
+  static userName;
+
   render () {
     return (
       <Layout>

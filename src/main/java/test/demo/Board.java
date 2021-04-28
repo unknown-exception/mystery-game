@@ -1,3 +1,4 @@
+package test.demo;
 public class Board {
     Card[][] deck = new Card[2][6];
 

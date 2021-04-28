@@ -1,3 +1,4 @@
+package test.demo;
 public class Player extends BaseCard{
     int maxDeployPoints;
     Card[] availableCards;

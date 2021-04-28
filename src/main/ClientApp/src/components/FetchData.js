@@ -1,35 +1,32 @@
 import React, { Component } from 'react';
-
+import App from '../App';
 export class FetchData extends Component {
   static displayName = FetchData.name;
 
   constructor(props) {
     super(props);
-    this.state = { forecasts: [], loading: true };
+    this.state = { opponents: [], loading: true };
   }
 
   componentDidMount() {
-    this.populateWeatherData();
+    this.getOpponents();
   }
 
-  static renderForecastsTable(forecasts) {
+  static renderOpponentTable(opponents) {
     return (
       <table className='table table-striped' aria-labelledby="tabelLabel">
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
+            <th>Name</th>
+            {/* <th>Temp. (C)</th>
             <th>Temp. (F)</th>
-            <th>Summary</th>
+            <th>Summary</th> */}
           </tr>
         </thead>
         <tbody>
-          {forecasts.map(forecast =>
-            <tr key={forecast.date}>
-              <td>{forecast.date}</td>
-              <td>{forecast.temperatureC}</td>
-              <td>{forecast.temperatureF}</td>
-              <td>{forecast.summary}</td>
+          {opponents.map(opponent =>
+            <tr key={opponent}>
+              <td>{opponent}</td>
             </tr>
           )}
         </tbody>
@@ -40,20 +37,21 @@ export class FetchData extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : FetchData.renderForecastsTable(this.state.forecasts);
+      : FetchData.renderOpponentTable(this.state.opponents);
 
     return (
       <div>
-        <h1 id="tabelLabel" >Weather forecast</h1>
-        <p>This component demonstrates fetching data from the server.</p>
+        <h1 id="tabelLabel" >Hello {App.userName}</h1>
+        <p>Choose your opponent</p>
         {contents}
       </div>
     );
   }
 
-  async populateWeatherData() {
-    const response = await fetch('weatherforecast');
+  async getOpponents() {
+    debugger;
+    const response = await fetch(App.baseUrl + '/getOpponentsList?name=' + App.userName);
     const data = await response.json();
-    this.setState({ forecasts: data, loading: false });
+    this.setState({ opponents: data, loading: false });
   }
 }

@@ -1,13 +1,16 @@
+package test.demo;
 public class Card extends BaseCard{
+    public int id;
     public int deployCost;
     public boolean wasUsed = true;
     public boolean onBoard = false;
     public int damage;
 
-    public Card(String _image, String name, int _damage, int _maxHP, int _deployCost){
+    public Card(String _image, String name, int _damage, int _maxHP, int _deployCost, int _id){
         super(_maxHP, name, _image);
         deployCost = _deployCost;
         damage = _damage;
+        id = _id;
     }
 
     public boolean TakeDamage(int damage){

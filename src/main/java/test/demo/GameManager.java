@@ -1,3 +1,4 @@
+package test.demo;
 import java.util.ArrayList;
 
 public class GameManager {

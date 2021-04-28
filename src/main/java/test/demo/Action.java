@@ -1,3 +1,4 @@
+package test.demo;
 public class Action {
     public int damage;
     public int[] attackedIndex;
