@@ -63,8 +63,8 @@ public class HelloController {
     @RequestMapping(value = "/isGotOpponent", produces = "application/json", method = RequestMethod.GET)
     public Player IsGotOpponent(@RequestParam String name){
         for (Battle battle : GameManager.Battles) {
-            if (battle.player2.name.equals(name)){
-                return battle.player1;
+            if (battle.player1.name.equals(name)){
+                return battle.player2;
             }
         }
         return new Player("");

@@ -8,7 +8,7 @@ export class FetchData extends Component {
     this.state = { opponents: [], loading: true };
     FetchData._this = this;
 
-    setInterval(function(){ 
+    FetchData._this.interval = setInterval(function(){ 
       FetchData._this.isGotOpponents();
      }, 3000);
   }
@@ -20,8 +20,10 @@ export class FetchData extends Component {
     console.log(data)
     if(!data.name)
       return;
-    App.opponentName = data;
-    FetchData._this.props.history.push("/counter");  
+    App.opponentName = data.name;
+    clearInterval(FetchData._this.interval);
+    FetchData._this.props.history.push("/counter");
+    
   }
 
   static handleClick(name) {

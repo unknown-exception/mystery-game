@@ -6,7 +6,6 @@ public class GameManager {
 
     public static ArrayList<Battle> Battles = new ArrayList<Battle>();
 
-
     static int playerTurn = 0;
     static Card selectedCard;
     static Board board = new Board();
