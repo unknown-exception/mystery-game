@@ -7,13 +7,27 @@ export class FetchData extends Component {
     super(props);
     this.state = { opponents: [], loading: true };
     FetchData._this = this;
+
+    setInterval(function(){ 
+      FetchData._this.isGotOpponents();
+     }, 3000);
+  }
+
+  async isGotOpponents() {
+    
+    const response = await fetch(App.baseUrl + '/isGotOpponent?name=' + App.userName);
+    const data = await response.json();
+    console.log(data)
+    if(!data.name)
+      return;
+    App.opponentName = data;
+    FetchData._this.props.history.push("/counter");  
   }
 
   static handleClick(name) {
-    debugger;
     App.opponentName = name;
-    
     FetchData._this.props.history.push("/counter");
+    fetch(App.baseUrl + '/startBattle?name=' + App.userName + '&opponentName=' + App.opponentName);
   }
 
   componentDidMount() {
@@ -58,10 +72,9 @@ export class FetchData extends Component {
   }
 
   async getOpponents() {
-
-    // const response = await fetch(App.baseUrl + '/getOpponentsList?name=' + App.userName);
-    // const data = await response.json();
-    const data = ['One', 'Two', 'three'];
+    const response = await fetch(App.baseUrl + '/getOpponentsList?name=' + App.userName);
+    const data = await response.json();
+    //const data = ['One', 'Two', 'three'];
     this.setState({ opponents: data, loading: false });
   }
 }

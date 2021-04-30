@@ -14,6 +14,12 @@ public class Arena {
         availablePlayers.remove(p.name);
     }
 
+    public static Player Dequeue(String name){
+        Player p = availablePlayers.get(name);
+        Remove(p);
+        return p;
+    }
+
     public static ArrayList<String> getAvailablePlayers(String playerName){
         ArrayList<String> ret = new ArrayList<>();
         for (String key: availablePlayers.keySet())

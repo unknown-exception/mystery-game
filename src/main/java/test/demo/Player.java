@@ -1,11 +1,12 @@
 package test.demo;
-public class Player extends BaseCard{
-    int maxDeployPoints;
-    Card[] availableCards;
+public class Player {
+    public int hp = 30;
+    public int mana = 30;
+    public String name;
+    Card[] playedCards = new Card[5];
 
-    public Player(int _maxHP, int _maxDeployPoints, String _name, String _image, Card[] _availableCards){
-        super(_maxHP, _name, _image);
-        maxDeployPoints = _maxDeployPoints;
-        availableCards = _availableCards;
+
+    public Player(String name) {
+        this.name = name;
     }
 }

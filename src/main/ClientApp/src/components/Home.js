@@ -25,8 +25,8 @@ export class Home extends Component {
 
   async setUserName() {
     let name = this.state.username;
-    // const response = await fetch(App.baseUrl + '/setUsername?name=' + name);
-    // const data = await response.json();
+    const response = await fetch(App.baseUrl + '/setUsername?name=' + name);
+    const data = await response.json();
     App.userName = name;
     this.props.history.push("/fetch-data");
   }
